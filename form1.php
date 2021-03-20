@@ -17,11 +17,11 @@
       if ( empty($f_name) || empty($l_name)) {
 
         echo "Field is empty<br>";
-        include "php_assin1.html";
+        include "php_assin1.php";
       }
       elseif ((ctype_alpha($f_name) == false) || (ctype_alpha($l_name) == false)) {
         echo "Not a valid name";
-        include "php_assin1.html";
+        include "php_assin1.php";
       }
       else{
 
