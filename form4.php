@@ -8,7 +8,7 @@
     $mark = $_POST['marks'];
     $pattern = "/[A-Za-z]+\|[0-9]+/";
     $mob_no = $_POST['mob_no'];
-    $check = substr($mob_no,0,3);
+    $check = "/\+91+[0-9]{10}/";
     // cond to check valid string or not
     if ( empty($f_name) || empty($l_name)) {
       echo "Name field is empty<br>";
@@ -27,7 +27,7 @@
       include "php_assin4.php";
     }
     // condition to check if indian and valid number or not
-    elseif ((strlen($mob_no) != 13) || ($check != "+91")) {
+    elseif (preg_match($check,$mob_no)==0) {
       echo "Moble number is invalid.<br>";
       include "php_assin4.php";
     }
@@ -64,8 +64,8 @@
       <th>Marks</th>
       </tr>
       ";
-      for($i=0;$i<count($mark_arr);$i++)
-         {echo "<tr>
+      for($i=0;$i<count($mark_arr);$i++){
+        echo "<tr>
                 <td>".$mark_arr[$i][0]."</td>
                 <td>".$mark_arr[$i][1]."</td>
                 </tr>";

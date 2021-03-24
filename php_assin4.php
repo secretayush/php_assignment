@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Assignment 4</title>
 </head>
 <body>
   <?php
