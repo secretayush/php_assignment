@@ -2,29 +2,11 @@
 <html>
 <head>
   <title>Assignment 5</title>
-  <style>
-    .pagination {
-      display: inline-block;
-    }
-    .pagination a {
-      color: black;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-    }
-    .pagination a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
-    .pagination a:hover{
-      background-color: #ddd;
-    }
-</style>
 </head>
 <body>
   <!-- creating a form -->
   <?php
-    $data = '
+    echo '
     <h1>Form 5</h1>
     <form action="form5.php" method="post" enctype="multipart/form-data">
       <!-- using post method to send the data to assin.php file -->
@@ -56,17 +38,7 @@
 
       <!-- on button click it will trigger the assin.php file -->
       <button>Submit</button><br>
-    </form>
-    <div class="pagination">
-      <br><br>
-      <a href="php_assin1.php">1</a>
-      <a href="php_assin2.php">2</a>
-      <a href="php_assin3.php">3</a>
-      <a href="php_assin4.php">4</a>
-      <a href="php_assin5.php">5</a>
-      <a href="php_assin6.php">6</a>
-    </div>';
-    echo $data;
+    </form>';
   ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
