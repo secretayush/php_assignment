@@ -62,14 +62,14 @@
       <tr>
       <th>Subject</th>
       <th>Marks</th>
-      </tr>
-      ";
+      </tr>";
       for($i=0;$i<count($mark_arr);$i++){
         echo "<tr>
                 <td>".$mark_arr[$i][0]."</td>
                 <td>".$mark_arr[$i][1]."</td>
                 </tr>";
-      }echo "</table>";
+      }
+      echo "</table>";
       echo "<br>Accepted Indain number and the length of mobile number is 10 and Moble number is ".$mob_no;
     }
   }
