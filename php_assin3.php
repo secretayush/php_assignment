@@ -29,8 +29,14 @@
   <?php
     session_start();
     // cond to check if already logedinor not
-    if (isset($_SESSION['username']) && ( $_SESSION['exp_time'] > time())){
-    $data = '
+    if (isset($_SESSION['username'])){
+      //cond to check if query parameter is empty or not
+      if (!empty($_GET['q'])) {
+        $_SESSION['q'] = $_GET['q'];
+        include('query.php');
+      }
+      else{
+    echo '
     <h1>Form 3</h1>
     <form action="form3.php" method="post" enctype="multipart/form-data">
       <!-- using post method to send the data to assin.php file -->
@@ -64,12 +70,10 @@
       <a href="php_assin5.php">5</a>
       <a href="php_assin6.php">6</a>
     </div>';
-    echo $data;
   }
+}
   else{
-    echo "Please login Session time out!";
-    // Store the uri of this page
-    $_SESSION['redirect'] = $_SERVER['REQUEST_URI'];
+    echo "Please login!";
     //include the login form page
     include 'php_assin7.php';
   }

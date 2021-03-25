@@ -9,17 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   else{
     session_start();
     $_SESSION['username'] = $username;         // set to check login cond
-    $_SESSION['exp_time'] = time() + (60);     //expire time is set
-    if (isset($_SESSION['redirect'])) {         //cond to redirect the page to last visited assignment
-      header ( "Location:".$_SESSION['redirect']);
-    }
-    else{                                         //else to the main menu
-    header("Location:menu.php");
-    }
+    $_SESSION['q'] = $_GET['q'];
+    include('query.php');
   }
 }
 else{
   echo "Error 404 not found!!!";
 }
-
 ?>

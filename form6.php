@@ -7,7 +7,7 @@
     $mark = $_POST['marks'];
     $pattern = "/[A-Za-z]+\|[0-9]+/";
     $mob_no = $_POST['mob_no'];
-    $check = substr($mob_no,0,3);
+    $check = "/\+91+[0-9]{10}/";
     // assignment 5
     $mail = $_POST['mail'];
     // Initialize CURL:
@@ -36,7 +36,7 @@
       include "php_assin6.php";
     }
     // condition to check if indian and valid number or not
-    elseif ((strlen($mob_no) != 13) || ($check != "+91")) {
+    elseif (preg_match($check,$mob_no)==0) {
       echo "Moble number is invalid.<br>";
       include "php_assin6.php";
     }
@@ -51,12 +51,7 @@
       $file_prop = explode('.',$file);
       // cond to check if image is properly uploaded or not
       if ($upload_file_check) {
-        $cont = "
-        <html>
-        <head>
-        </head>
-        <body>
-        <br><img src='".$file."' title='".$file_prop[0]."' height='300px' width='200px' alt='".$file_prop[0]."'><br>";
+        $cont = "<br><img src='".$file."' title='".$file_prop[0]."' height='300px' width='200px' alt='".$file_prop[0]."'><br>";
         $cont.= $_POST['fullname'];      //print full name under the image
       }
       else{
@@ -91,9 +86,6 @@
       // assignment 4
       $cont.= "<br>Accepted Indain number and the length of mobile number is 10 and Moble number is ".$mob_no;
       $cont.= "<br>Valid email entered and email is ".$mail;
-      $cont.="
-      </body>
-      </html>";
       //write data in .doc file
       $FileName = $f_name . "_" . $l_name . ".doc";
       file_put_contents(__DIR__ . "/" . $FileName,$cont);
