@@ -13,12 +13,24 @@
     <button>Play</button>
   </form>
   <?php
-    $input = $_POST['game'];
-    include 'index.php';
+    $check_arr = [2,3,4];
+    include 'Game.php';
     // creating object of class game
     $obj = new Game();
     //calling function of class
-    $obj->condition($input);
+    $var = $obj->game_rules($_POST['game']);
+    if ($var == 0) {
+      echo "<br>Please select any one option!";
+    }
+    elseif ($var == 1) {
+      echo "<br>Draw Play again<br>";
+    }
+    elseif (in_array($var,$check_arr)) {
+      echo "<br>You Loss!!!<br>";
+    }
+    else{
+      echo "<br>You Win!!!<br>";
+    }
   ?>
 </body>
 </html>

@@ -7,38 +7,41 @@
       $this->comp = "";
       $this->game = array('Rock','Paper','Scissor');
     }
-    public function condition($input)
+    public function game_rules($input)
     {
       //Computer selects randomly from rock paper or scissor
       $this->comp = $this->game[rand(0,2)];
       //To check if input is set or not
+      $flag = 0;
       if (isset($input)) {
         //draw cond check
         if ($this->comp == $input) {
-          echo "<br>Draw Play again<br>";
-          echo "Computer : ".$this->comp."<br>User : ".$input;
+          $flag = 1;
         }
         elseif ($this->comp == 'Rock' && $input == 'Scissor') {
-          echo "<br>You Loss!!!<br>";
-          echo "Computer : ".$this->comp."<br>User : ".$input;
+          $flag = 2;
         }
         elseif ($this->comp == 'Scissor' && $input == 'Paper') {
-          echo "<br>You Loss!!!<br>";
-          echo "Computer : ".$this->comp."<br>User : ".$input;
+          $flag = 3;
         }
         elseif ($this->comp == 'Paper' && $input == 'Rock') {
-          echo "<br>You Loss!!!<br>";
-          echo "Computer : ".$this->comp."<br>User : ".$input;
+          $flag = 4;
         }
         //when above cond fails user win
         else{
-          echo "<br>You Winn!!!<br>";
-          echo "Computer : ".$this->comp."<br>User : ".$input;
+          $flag = 5;
         }
       }
       // if not input is not set
       else{
-        echo "<br>Please select any one!";
+        $flag = 0;
+      }
+      $this->show_result($this->comp,$input,$flag);
+      return $flag;
+    }
+    public function show_result($comp,$input,$flag){
+      if ($flag != 0) {
+        echo "<br>Computer : ".$comp."<br>User : ".$input;
       }
     }
   }
