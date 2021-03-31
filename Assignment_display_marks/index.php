@@ -6,31 +6,32 @@
 <body>
   <?php
     include('Student.php');
-    $student = array(
-      array('id'=>'st1','name'=>'John','dob'=>'20042000','grade'=>'12','marks'=> array('H' => 16, 'E' => 45)),
-      array('id'=>'st2','name'=>'Ram','dob'=>'22042000','grade'=>'9','marks'=> array('H' => 26, 'E' => 40))
-    );
-    $subject = array(
-      '9' => array(
-        array('name'=> 'Hindi','id' => 'H', 'min' => '20'),
-        array('name'=> 'English','id' => 'E', 'min' => '25'),
-        array('name'=> 'Science','id' => 'S', 'min' => '20')
-      ),
-      '10' => array(
-        array('name'=> 'Hindi','id' => 'H', 'min' => '20'),
-        array('name'=> 'English','id' => 'E', 'min' => '25'),
-        array('name'=> 'Science','id' => 'S', 'min' => '20')
-      ),
-      '12' => array(
-        array('name'=> 'Hindi','id' => 'H', 'min' => '20'),
-        array('name'=> 'English','id' => 'E', 'min' => '25'),
-        array('name'=> 'Science','id' => 'S', 'min' => '20')
-      )
-    );
+    include('Data.php');
     $obj = new Student($student,$subject);
-    $obj->get_data();
-    echo ($obj->subject_fetch('12'));
-    $obj->student_marks('st1');
+    //display grade subjects details
+    echo "<br>Subject : <br>";
+    $get_mark = $obj->subject_fetch('12');
+    if (empty($get_mark)) {
+      echo "Not found grade!!";
+    }
+    else{
+      foreach ($get_mark as $key => $value) {
+        foreach ($value as $k => $v) {
+          echo $k." : ".$v."<br>";
+        }
+      }
+    }
+    // display student marks function
+    echo "<br>Student marks : <br>";
+    $get_stu_mark = $obj->student_marks('st1');
+    if (empty($get_stu_mark)) {
+      echo "Details Not found!!";
+    }
+    else{
+      foreach ($get_stu_mark as $key => $value) {
+        echo $key." : ".$value."<br>";
+      }
+    }
   ?>
   <table cellspacing="0px" border="1">
     <tr>
@@ -40,7 +41,7 @@
       <th>Subject</th>
       <th>Result</th>
     </tr>
-    <?php $obj->result();?>
+    <?php echo ($obj->result());?>
   </table>
 </body>
 </html>
