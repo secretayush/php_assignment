@@ -13,16 +13,18 @@
     if (isset($_POST['button'])) {
       include('Gists.php');
 
+      //github api link
       $url = 'https://api.github.com/gists';
-      //access token
-      $access = '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';
+      //access token created in github
+      $access = 'token_private';
 
       if (empty(json_decode($_POST['code']))) {
         echo "Incorrect formate!!";
       }
       else{
         $obj = new Gists($url,$_POST['code'],$access);
-        $obj->gists_write();
+        // $obj->gists_write();
+        $obj->gists_using_guzzle();
 
       }
     }
