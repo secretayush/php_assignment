@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ipl tournament</title>
+  <title>IPL</title>
 </head>
 <body>
-  <!-- form to post data in data base -->
+  <!-- form to add teams fields -->
+  <h1>Form to input teams fields</h1>
   <form action="" method="post">
-    <label for="venue">Venue : </label>
-    <input type="text" name="venue"> <br> <br>
+    <label for="t_name">Team name : </label>
+    <input type="text" name="t_name"><br><br>
 
-    <label for="date_match">Date of match : </label>
-    <input type="date" name="date_match"> <br><br>
+    <label for="c_name">Captain name : </label>
+    <input type="text" name="c_name"><br><br>
 
-    <label for="team1">Team 1 : </label>
-    <input type="text" name="team1"> <br><br>
-
-    <label for="team2">Team 2 : </label>
-    <input type="text" name="team2"> <br><br>
-
-    <label for="caption1">Captain team 1 : </label>
-    <input type="text" name="captain1"> <br><br>
-
-    <label for="caption2">Captain team 2 : </label>
-    <input type="text" name="captain2"> <br><br>
-
-    <label for="toss">Toss won by : </label>
-    <input type="text" name="toss"> <br><br>
-
-    <label for="match_win">Match won by : </label>
-    <input type="text" name="match_win"> <br><br>
-    <input type="submit" name="send" value="send"> <br>
+    <input type="submit" name="team" value="Add team">
   </form>
-  <?php
-    if (isset($_POST['send'])){
-      include('Data.php');
-      $obj = new Data();
-      $obj->store_data();
-    }
-?>
+  <hr>
+  <hr>
+  <!-- form to input venue field -->
+  <h1>Form to input venues fields</h1>
+  <form action="" method="post">
+    <label for="v_name">Venue name :</label>
+    <input type="text" name="v_name"><br><br>
 
+    <input type="submit" name="venue" value="Add venue"><br>
+  </form>
+  <hr>
+  <hr>
+  <a href="match.php"><h3>To add match click here</h3></a><br>
+  <!-- php code to send data in teams and venues table  -->
+  <?php
+    include 'Data.php';
+    $obj = new Data();
+    if (isset($_POST['team'])) {
+      $obj->add_team($_POST['t_name'],$_POST['c_name']);
+    }
+    if (isset($_POST['venue'])) {
+      $obj->add_venue($_POST['v_name']);
+    }
+   ?>
 </body>
 </html>
