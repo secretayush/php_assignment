@@ -1,0 +1,82 @@
+Create 3 tables:
+1. employee_code_table
+  create table employee_salary_table(
+      -> employee_id varchar(30) not null,
+      -> employee_salary int not null,
+      -> employee_code varchar(30) not null,
+      -> primary key (employee_id),
+      -> foreign key (employee_code) references employee_code_table(employee_code));
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| employee_code      | varchar(30) | NO   | PRI | NULL    |       |
+| employee_code_name | varchar(30) | NO   |     | NULL    |       |
+| employee_domain    | varchar(30) | NO   |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+
+2. employee_salary_table:
+  create table employee_salary_table(
+    -> employee_id varchar(30) not null,
+    -> employee_salary int not null,
+    -> employee_code varchar(30) not null,
+    -> primary key (employee_id),
+    -> foreign key (employee_code) references employee_code_table(employee_code));
+
+  +-----------------+-------------+------+-----+---------+-------+
+  | Field           | Type        | Null | Key | Default | Extra |
+  +-----------------+-------------+------+-----+---------+-------+
+  | employee_id     | varchar(30) | NO   | PRI | NULL    |       |
+  | employee_salary | int         | NO   |     | NULL    |       |
+  | employee_code   | varchar(30) | NO   | MUL | NULL    |       |
+  +-----------------+-------------+------+-----+---------+-------+
+
+
+3. employee_details_table
+  create table employee_details_table(
+    -> employee_id varchar(30) not null foreign key references employee_salary_table(employee_id),
+    -> employee_first_name varchar(30) not null,
+    -> employee_last_name varchar(30) not null,
+    -> graduation_percentile int not null);
+  +-----------------------+-------------+------+-----+---------+-------+
+  | Field                 | Type        | Null | Key | Default | Extra |
+  +-----------------------+-------------+------+-----+---------+-------+
+  | employee_id           | varchar(30) | NO   | MUL | NULL    |       |
+  | employee_first_name   | varchar(30) | NO   |     | NULL    |       |
+  | employee_last_name    | varchar(30) | NO   |     | NULL    |       |
+  | graduation_percentile | int         | NO   |     | NULL    |       |
+  +-----------------------+-------------+------+-----+---------+-------+
+
+Inserted values in these table:
+
+1.employee_code_table:
+  +---------------+--------------------+-----------------+
+  | employee_code | employee_code_name | employee_domain |
+  +---------------+--------------------+-----------------+
+  | su_cersei     | du_cersei          | Java            |
+  | su_daenerys   | du_daenerys        | Php             |
+  | su_john       | ru_john            | Java            |
+  | su_tyrion     | du_tyrion          | Angular JS      |
+  +---------------+--------------------+-----------------+
+2.employee_salary_table:
+  +-------------+-----------------+---------------+
+  | employee_id | employee_salary | employee_code |
+  +-------------+-----------------+---------------+
+  | RU122       |           60000 | su_john       |
+  | RU123       |           25000 | su_daenerys   |
+  | RU124       |           44000 | su_cersei     |
+  | RU125       |           85000 | su_tyrion     |
+  +-------------+-----------------+---------------+
+3.employee_details_table:
+  +-------------+---------------------+--------------------+-----------------------+
+  | employee_id | employee_first_name | employee_last_name | graduation_percentile |
+  +-------------+---------------------+--------------------+-----------------------+
+  | RU122       | John                | Snow               |                    60 |
+  | RU123       | Daenerys            | Targaryen          |                    88 |
+  | RU124       | Cersei              | Lannister          |                    72 |
+  | RU125       | Tyrion              | Lannister          |                    64 |
+  +-------------+---------------------+--------------------+-----------------------+
+
+Solved the query in employee.php file and displayed the result in index page.
+
+
