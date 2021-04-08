@@ -60,6 +60,14 @@
         echo "something worng";
       }
     }
+    //to show the data on the web page using dynamic query
+    public function show_data($select='',$from=''){
+      //dynamic query generator to generate querys using parameters
+      $query = "select ".$select." from ".$from;
+      //send query to mysql server
+      $result = $this->conn->query($query);
+      return $result;
+    }
     //function to store data in match table
     public function store_data()
     {
@@ -98,11 +106,13 @@
       $match = "insert into matchs(match_date,v_id,result,team_1,team_2,toss) values('$this->dom','$v_id','$this->match_win','$t_id1','$t_id2','$this->toss')";
       //condition to check is data is inserted properly or not
       if ($this->conn->query($match)) {
-        echo "Added data in match table!!";
+        $result= "<div class='result'>Added data in match table!!</div>";
       }
       else{
-        echo "Something is wrong!!";
+        $result= "<div class='result'>Something is wrong!!</div>";
       }
+    //returnig the result in index page
+    return $result;
     }
   }
  ?>
