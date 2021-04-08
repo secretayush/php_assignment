@@ -1,0 +1,39 @@
+Created 3 tables :
+  1. Venues(v_id pk, v_name)
+  +--------+-------------+------+-----+---------+----------------+
+  | Field  | Type        | Null | Key | Default | Extra          |
+  +--------+-------------+------+-----+---------+----------------+
+  | v_id   | int         | NO   | PRI | NULL    | auto_increment |
+  | v_name | varchar(50) | NO   | UNI | NULL    |                |
+  +--------+-------------+------+-----+---------+----------------+
+
+
+2. Teams(t_id pk,t_name,captain)
+  +-----------+-------------+------+-----+---------+----------------+
+  | Field     | Type        | Null | Key | Default | Extra          |
+  +-----------+-------------+------+-----+---------+----------------+
+  | t_id      | int         | NO   | PRI | NULL    | auto_increment |
+  | t_name    | varchar(50) | NO   | UNI | NULL    |                |
+  | t_captain | varchar(50) | NO   | UNI | NULL    |                |
+  +-----------+-------------+------+-----+---------+----------------+
+
+
+3. Matchs(m_id pk,match_date, v_id fk, result,team_1 fk,team_2 fk):
+  +------------+-------------+------+-----+---------+----------------+
+  | Field      | Type        | Null | Key | Default | Extra          |
+  +------------+-------------+------+-----+---------+----------------+
+  | m_id       | int         | NO   | PRI | NULL    | auto_increment |
+  | match_date | varchar(30) | NO   |     | NULL    |                |
+  | v_id       | int         | NO   | MUL | NULL    |                |
+  | result     | varchar(50) | NO   |     | NULL    |                |
+  | team_1     | int         | NO   | MUL | NULL    |                |
+  | team_2     | int         | NO   | MUL | NULL    |                |
+  | toss       | varchar(50) | NO   |     | NULL    |                |
+  +------------+-------------+------+-----+---------+----------------+
+
+
+create 3 tables to archive data redundancy. to fetch data from all these tables I created 3 foreign key in matchs table. Hence to fetch the data of any table we can join the table with a match table and select the values from the joined table.
+
+Pros: Data redundancy is archived 
+
+cons: The unique values of tables are considered so that team name and captain name are not repeated but the id is increasing whenever the program is running hence the auto-increment value is working on duplicate values as well.
