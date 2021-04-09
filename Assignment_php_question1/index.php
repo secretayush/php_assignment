@@ -1,7 +1,8 @@
 <?php
   // including mail.php file
   include 'Mail.php';
-  // condoition to check if send button is set then run inner code
+  $response = "";
+  // condition to check if send button is set then run inner code
   if (isset($_POST['send'])) {
     // create object of class mail
     $obj = new Mail();
@@ -12,7 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>1st assignment</title>
+  <title>Mail send</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
@@ -20,7 +21,6 @@
   <div class="container">
     <!-- form to take inputs from user -->
     <form action="" method="post">
-
       <label for="name">Name : </label>
       <input type="txt" name="name"><br><br>
       <label for="mail">Email : </label>
@@ -28,10 +28,11 @@
       <label for="message">Message: </label>
       <textarea name="message" rows="4" cols="33"></textarea><br><br>
       <input type="submit" name="send" value="Send">
+      <!-- show the response of send mai function -->
+      <div>
+        <?php echo $response; ?>
+      </div>
     </form>
-    <div>
-      <?php echo $response; ?>
-    </div>
   </div>
 </body>
 </html>

@@ -30,3 +30,6 @@ img{
 .gallery{
   flex:1;
 }
+.result{
+  margin-top: 20px;
+}

@@ -1,26 +1,37 @@
 <?php
   /**
-   * Sending mail to user
+   * class to send mail to user and owner
    * adding php mailer files to send email to user and owner
+   * varable:
+   * user mail
+   * ower mail
+   * methods
+   * set up mailer
+   * send mail to owner
+   * send mail to user acknowledge
+   * Note: enter your key and mail id and password
    */
-  // including php mailer files
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\SMTP;
   use PHPMailer\PHPMailer\Exception;
   require 'vendor/autoload.php';
   class Mail
   {
-    // varables declared
     public $mail;
     public $mail_user;
+    /**
+     * Initilizes the mail class varable mail and user mail to send mail.
+     */
     function __construct(){
       //including the php mailer autoload file
       require 'php_mailer/PHPMailerAutoload.php';
-      //creating new object of phpmailer class mail for owner and 2nd for user
       $this->mail = new PHPMailer;
       $this->mail_user = new PHPMailer;
     }
-    // function used to set up the php mailer to initilize the mailer  http port to send mail
+    /**
+     * Function used to set up the php mailer to initilize the mailer
+     * http port to send mail.
+     */
     public function set_up($mailer)
     {
       //set debug is true to show error in code
@@ -32,10 +43,14 @@
       $mailer->Port = 587;
       $mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
       //initilizing id and password of gmail account
-      $mailer->Username = 'ayush.dev@innoraft.com'; // owners mail id
-      $mailer->Password = 'showofff';   // password
+      $mailer->Username = 'ayush.dev@innoraft.com';
+      // enter your mail id and password
+      $mailer->Password = '**';
     }
-    //main fun which take paramenter from index page and process them to send maill to user and owner
+    /**
+     * Main fun which take paramenter from index page and
+     * process them to send maill to user and owner.
+    */
     public function send_mail($name,$email,$message){
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //if mail is empty then reload the index page
@@ -44,7 +59,9 @@
         }
         else{
           // Initialize CURL to check email is correct or not using api:
-          $ch = curl_init('http://apilayer.net/api/check?access_key=d7625716eae944521d8f58f489a28000&email='.$email);
+          // Note : add your key
+          $key = '**';
+          $ch = curl_init('http://apilayer.net/api/check?access_key='.$key.'&email='.$email);
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           // Store the data:
           $json = curl_exec($ch);
@@ -84,11 +101,14 @@
       }
       return $var;
     }
+    /**
+     * Function to send the mail to user, input parament is mail id of the user
+     * send the mail back to user for conformation that mail is recived.
+    */
     public function send_user($mail)
     {
       $this->set_up($this->mail_user);
       //from where mail is sending to the user
-      //send response message if mail is sent to owner
       $this->mail_user->setFrom('ayush.dev@innoraft.com');
       $this->mail_user->addAddress($mail);               // email of reciver
       $this->mail_user->addReplyTo('ayush.dev@innoraft.com');

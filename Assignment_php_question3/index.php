@@ -5,11 +5,8 @@
   $obj = new Gallery();
   //run the below code when upload button is clicked
   if (isset($_POST['upload'])) {
-    // takeing file path
     $file = $_FILES['file']['name'];
-    // taking uploaded file path
     $temp_name = $_FILES['file']['tmp_name'];
-    //discription store in varible
     $desc = $_POST['desc'];
     $result = $obj->upload_image($file,$temp_name,$desc);
   }
@@ -35,16 +32,14 @@
         <!-- add discription of image -->
         <label for="desc">Add discription : </label>
         <input type="text" name="desc"><br><br>
-        <!-- upload a image in data base -->
         <label for="file">Upload image :</label>
         <input type="file" name="file"><br><br>
-        <!-- click button to send the data in data base -->
         <input type="submit" name="upload" value="upload">
+        <!-- show message that code is uploaded or not -->
+        <div class="result">
+          <?php echo $result; ?>
+        </div>
       </form>
-    </div>
-    <!-- show message that code is uploaded or not -->
-    <div class="result">
-      <?php echo $result; ?>
     </div>
     <!-- second flex box -->
     <div class="flex2">

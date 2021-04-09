@@ -1,10 +1,20 @@
 <?php
 /**
-  * class of gallary images
-  */
+  * class of gallary images contain
+  * varable:
+  * conn to establish connection to database
+  * methods:
+  * upload image
+  * query to insert
+  * show query
+  **/
   class Gallery
   {
     public $conn;
+    /**
+      *construction to connect database to php code
+      *initilize the conn varable
+      **/
     function __construct()
     {
       //connecting database to php code
@@ -20,10 +30,16 @@
         echo "error in connection to database!!!";
       }
     }
-    // close connect to database
+    /**
+     * close connect to database
+     */
     function __destruct(){
       $this->conn->close();
     }
+    /**
+     *upload data in database the function takes discription and
+     *path of image in function paramente
+     **/
     public function upload_image($file,$temp_name,$desc)
     {
       $path = 'uploads/'.$file;
@@ -37,15 +53,18 @@
           $result = "inserted and uploaded!";
         }
         else{
-          $result = "wrong!!";
+          $result = "Not inserted!!";
         }
        }
        else{
-        $result = "wrong";
+        $result = "Something is wrong!";
        }
        return $result;
     }
-    // function to insert discription and path of image in mysql database
+    /**
+      * function to insert discription and path of
+      * image in mysql database
+      */
     public function query_insert($insert,$desc,$path)
     {
       //dynamic query generator to generate querys using parameters
@@ -54,12 +73,13 @@
       $result = $this->conn->query($query);
       return $result;
     }
-    // query to show data from database
+    /**
+     * query to show code data from database
+     */
     public function query_show($select='',$from='')
     {
       //dynamic query generator to generate querys using parameters
       $query = "select ".$select." from ".$from;
-      //send query to mysql server
       $result = $this->conn->query($query);
       return $result;
     }
