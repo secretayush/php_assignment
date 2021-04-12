@@ -1,6 +1,7 @@
 <?php
   // including mail.php file
   include 'Mail.php';
+  require 'vendor/autoload.php';
   $response = "";
   // condition to check if send button is set then run inner code
   if (isset($_POST['send'])) {

@@ -12,19 +12,22 @@
    * Note: enter your key and mail id and password
    */
   use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
   use PHPMailer\PHPMailer\Exception;
-  require 'vendor/autoload.php';
   class Mail
   {
     public $mail;
     public $mail_user;
+    private $pass;
+    private $url;
     /**
      * Initilizes the mail class varable mail and user mail to send mail.
      */
     function __construct(){
+      //Password of owner mail id
+      $this->pass = 'showofff';
+      //Api url link
+      $this->url = 'http://apilayer.net/api/check?access_key=d7625716eae944521d8f58f489a28000&email=';
       //including the php mailer autoload file
-      require 'php_mailer/PHPMailerAutoload.php';
       $this->mail = new PHPMailer;
       $this->mail_user = new PHPMailer;
     }
@@ -45,7 +48,7 @@
       //initilizing id and password of gmail account
       $mailer->Username = 'ayush.dev@innoraft.com';
       // enter your mail id and password
-      $mailer->Password = '**';
+      $mailer->Password = $this->pass;
     }
     /**
      * Main fun which take paramenter from index page and
@@ -59,9 +62,7 @@
         }
         else{
           // Initialize CURL to check email is correct or not using api:
-          // Note : add your key
-          $key = '**';
-          $ch = curl_init('http://apilayer.net/api/check?access_key='.$key.'&email='.$email);
+          $ch = curl_init($this->url.$email);
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           // Store the data:
           $json = curl_exec($ch);

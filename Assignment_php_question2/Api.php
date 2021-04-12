@@ -10,13 +10,14 @@
  class Api
  {
   // Declare url variable of class
-   public $url;
+   private $url;
    /**
     * Construstor contains url and initilizing the url varbale of class.
    */
-   function __construct($url)
+   function __construct()
    {
-      $this->url = $url;
+      // main url of api
+      $this->url = 'https://api.giphy.com/v1/gifs/random?api_key=MOHdjBbgPYP7qQmZH9aQ3E5l201ZJXCL&tag=&rating=g';
    }
    /*
     *Return the data from api using the below function.

@@ -2,11 +2,8 @@
 Php code to get rondom link from giphy api
 Please add your key to run this code properly from giphy website. -->
 <?php
-  $key = '**';
-  // main url of api
-  $url = 'https://api.giphy.com/v1/gifs/random?api_key='.$key.'&tag=&rating=g';
   include 'Api.php';
-  $obj = new Api($url);
+  $obj = new Api();
   $link = $obj->get_random_gif();
 ?>
 <!DOCTYPE html>
