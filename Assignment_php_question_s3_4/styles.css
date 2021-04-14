@@ -1,0 +1,18 @@
+body{
+  background-color: #faf;
+  text-align: center;
+}
+.container{
+  background-color: #fff;
+  display: inline-block;
+  padding: 50px;
+  max-width: 80%;
+  margin: auto;
+}
+form{
+  text-align: left;
+  background-color: #fdf;
+  display: inline-block;
+  padding: 20px;
+  margin: 50px;
+}
