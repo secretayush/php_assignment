@@ -1,6 +1,7 @@
 <!-- This file is create to create class object -->
 <?php
-  include 'Form.php';
+  require_once 'vendor/autoload.php';
+  use Src\Form;
   $obj = new Form();
   //Condition to check if number1 and number2 is set
   if (!empty($_GET['mail'])) {

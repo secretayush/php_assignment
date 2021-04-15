@@ -1,5 +1,6 @@
 <?php
-  include 'Login.php';
+  require_once 'vendor/autoload.php';
+  use login\Login;
   // Create the object of class
   $obj = new Login();
   if ($_SERVER['REQUEST_METHOD'] == "POST") {

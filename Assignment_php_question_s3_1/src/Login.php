@@ -1,4 +1,5 @@
 <?php
+namespace login;
 /**
   * Login SignUp using git or google oauth
   */

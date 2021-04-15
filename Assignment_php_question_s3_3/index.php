@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User info</title>
+  <title>Calculator using ajax</title>
 </head>
 <body>
   <div class="container">

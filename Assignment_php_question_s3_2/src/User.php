@@ -1,4 +1,5 @@
 <?php
+namespace Src;
 /**
   * User information class is showing user informaation and hhtp header
   */

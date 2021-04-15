@@ -1,5 +1,6 @@
 <?php
-/**
+  namespace Src;
+  /**
   * Add data into form using ajax
   */
  class Form{

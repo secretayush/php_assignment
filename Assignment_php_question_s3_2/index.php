@@ -1,5 +1,6 @@
 <?php
-  include 'User.php';
+  require_once 'vendor/autoload.php';
+  use Src\User;
   $obj = new User();
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //stores the information abouth the system

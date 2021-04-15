@@ -1,6 +1,7 @@
 <!-- This file is create to create class object -->
 <?php
-  include 'Calculator.php';
+  require_once 'vendor/autoload.php';
+  use Src\Calculator;
   $obj = new Calculator();
   //Condition to check if number1 and number2 is set
   if (isset($_GET['num1']) && isset($_GET['num2'])) {

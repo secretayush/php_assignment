@@ -1,4 +1,5 @@
 <?php
+namespace Src;
 /**
   * Calculator to calculate 2 numbers
   */

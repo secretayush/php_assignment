@@ -1,6 +1,7 @@
 <?php
   //Including the feed php file to create object of class
-  include 'Feed.php';
+  require_once 'vendor/autoload.php';
+  use Src\Feed;
   $obj = new Feed();
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $obj->show_feed();
@@ -9,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form using ajax</title>
+  <title>Tweets from twitter Api</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
