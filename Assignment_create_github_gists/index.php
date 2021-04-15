@@ -16,7 +16,7 @@
       //github api link
       $url = 'https://api.github.com/gists';
       //access token created in github
-      $access = 'token_private';
+      $access = 'XXX';
 
       if (empty(json_decode($_POST['code']))) {
         echo "Incorrect formate!!";
