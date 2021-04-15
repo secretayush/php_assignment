@@ -1,4 +1,6 @@
 <?php
+//created namespace
+namespace Src;
 /**
   * User registration and login
   */
@@ -48,10 +50,10 @@
       $username = trim($username);
       $password = trim($password);
       // query selects only if login id and password matches
-      $sql = "select * from user where username = '".$username."' AND approve = 1";
+      $sql = "select * from user where username = '".$username."'";
       $data = $this->conn->query($sql);
       if (empty($data)) {
-        $result = "Something is wrong!!";
+        $result = "Username is invalid Register asap!!";
       }
       else{
         $pass_db = mysqli_fetch_assoc($data);
@@ -60,9 +62,6 @@
           $row = mysqli_fetch_assoc($data);
           $_SESSION['username'] = $row['username'];
           header("location:welcome.php");
-        }
-        else{
-          $result = "Invalid Password or account is not verified!!";
         }
       }
     }
@@ -83,42 +82,19 @@
       echo "Filed is empty";
     }
     else{
-      //change password into hash code
       $password = password_hash($password, PASSWORD_DEFAULT);
       $sql = 'insert into user(username, password, sec_question, sec_answer) values("'.$username.'","'.$password.'","'.$question.'","'.$answer.'")';
+
       $data = $this->conn->query($sql);
       if (!$data) {
-        echo "Already registerd";
+        echo "Something is wrong";
       }
-      else{
-        //Sucessfull signup redirect to the login page
-        header("location:index.php");
-      }
-    }
-  }
-  /**
-   * Show the user data in admin pannle
-   */
-  public function show_user()
-  {
-    $sql = "select * from user  where approve = 0";
-    $result = $this->conn->query($sql);
-    return $result;
-  }
-  /**
-   * Aprove user from admin dashboard
-   */
-  public function approve_user($username)
-  {
-    //update the approve value to 1 and set user can login
-    $sql = 'update user set approve = 1 where username="'.$username.'"';
-    $data = $this->conn->query($sql);
-    if ($data) {
-      header("location:admin.php");
     }
   }
   /**
    * Forgot password function handles the modification of pass of valid user
+   * id = ayush
+   * pass qaz
    */
   public function forgot($username,$question,$answer,$new_pass)
   {

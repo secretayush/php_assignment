@@ -1,6 +1,7 @@
 <?php
   //create object of register class
-  include 'Register.php';
+  require_once 'vendor/autoload.php';
+  use innoraft\Register;
   $obj = new Register();
   //if button is set then run below code
   if ($_SERVER['REQUEST_METHOD'] == "POST") {

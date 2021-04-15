@@ -1,5 +1,7 @@
 <?php
-  include 'Register.php';
+  //autoloder to load the todo class
+  require_once 'vendor/autoload.php';
+  use Src\Register;
   $obj = new Register();
   if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $obj->forgot($_POST['username'],$_POST['question'],$_POST['answer'],$_POST['new']);

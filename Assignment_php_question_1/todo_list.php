@@ -1,6 +1,7 @@
 <?php
-  // including the todo php class
-  include 'Todo.php';
+  //autoloder to load the todo class
+  require_once 'vendor/autoload.php';
+  use Src\Todo;
   $obj = new Todo();
   //starting a session
   session_start();

@@ -1,5 +1,6 @@
 <?php
-  include 'Register.php';
+  require_once 'vendor/autoload.php';
+  use innoraft\Register;
   $obj = new Register();
   $result = "";
   if ($_SERVER['REQUEST_METHOD'] == "POST") {

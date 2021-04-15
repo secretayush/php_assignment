@@ -1,6 +1,7 @@
 <?php
   //Register class to get method approve_user and show_data
-  include 'Register.php';
+  require_once 'vendor/autoload.php';
+  use innoraft\Register;
   $obj = new Register();
   $result = $obj->show_user();
   if (isset($_GET['id'])) {
