@@ -7,7 +7,9 @@
     public $user_data;
     public $ch;
     public $info,$show,$img,$imgarr,$icons,$iconlink,$check,$op,$k,$response_data;
-    // to get data from api and store in user_data
+    /**
+     * To get data from api and store in user_data.
+     */
     public function get_api($api_url){
       $this->api_url = $api_url;
       $ch = curl_init();
@@ -28,7 +30,9 @@
 
       return $user_data;
     }
-    //to get the images
+    /**
+     * To get the images from the innoraft api.
+     */
     public function get_image($user_data){
       $img = $user_data->relationships->field_image->links->related->href;
       // calling get_api to return data from the api
@@ -38,7 +42,9 @@
       $imgarr = "http://innoraft.com".$imgarr;
       return '<img src="'.$imgarr.'">';
     }
-    //to get icon images
+    /**
+     * To get icon images form the api.
+     */
     public function get_icon_image($user_data){
       $img = $user_data->relationships->field_media_image->links->related->href;
       // calling get_api to return data from the api
@@ -48,7 +54,9 @@
       $imgarr = "http://innoraft.com".$imgarr;
       return '<img src="'.$imgarr.'" height= "50px" width="50px">';
     }
-    // to get icons form api
+    /**
+     * To get icons form data from the api.
+     */
     public function get_icon($user_data){
       $iconlink = $user_data->relationships->field_service_icon->links->related->href;
       $icons = $this->get_api($iconlink);
@@ -58,12 +66,12 @@
       foreach ($icons as $key => $value) {
         $show .= "<li>".$this->get_icon_image($value)."</li>";
       }
-      $show .= "
-      </ul>
-      </div>";
+      $show .= "</ul></div>";
       return $show;
     }
-    //Arranging the data in below function
+    /**
+     * Arranging the data in below function
+     */
     public function get_data($data){
       $user_data = $data;
       //To take only these title form the api
